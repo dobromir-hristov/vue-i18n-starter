@@ -1,6 +1,14 @@
 <template>
-  <select name="language" @change="changeLanguage">
-    <option v-for="lang in supportedLanguages" :selected="lang === currentLanguage" :value="lang">{{lang}}</option>
+  <select class="LanguageSwitcher"
+          name="language"
+          @change="changeLanguage">
+    <option v-for="lang in supportedLanguages"
+            :key="lang"
+            :selected="isCurrentLanguage(lang)"
+            :class="{ 'is-selected': isCurrentLanguage(lang) }"
+            :value="lang">
+      {{lang}}
+    </option>
   </select>
 </template>
 <script>
@@ -19,9 +27,12 @@
       changeLanguage (e) {
         const lang = e.target.value
         const to = this.$router.resolve({ params: { lang } })
-        Trans.changeLanguage(lang).then(() => {
+        return Trans.changeLanguage(lang).then(() => {
           this.$router.push(to.location)
         })
+      },
+      isCurrentLanguage (lang) {
+        return lang === this.currentLanguage
       }
     }
   }

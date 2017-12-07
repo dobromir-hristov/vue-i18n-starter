@@ -34,7 +34,7 @@ const Trans = {
   getUserLang () {
     const lang = window.navigator.language || window.navigator.userLanguage || Trans.defaultLanguage
     return {
-      lang: lang.toLowerCase(),
+      lang: lang,
       langNoISO: lang.split('-')[0]
     }
   },
@@ -51,7 +51,7 @@ const Trans = {
    */
   changeLanguage (lang) {
     if (!Trans.isLangSupported(lang)) return Promise.reject(new Error('Language not supported'))
-    if (i18n.locale === lang) return Promise.resolve() // has been loaded prior
+    if (i18n.locale === lang) return Promise.resolve(lang) // has been loaded prior
     return import(/* webpackChunkName: "lang-[request]" */ `@/lang/${lang}.js`).then(msgs => {
       i18n.setLocaleMessage(lang, msgs.default || msgs)
       return Trans.setI18nLanguageInServices(lang)

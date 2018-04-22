@@ -12,28 +12,28 @@
   </select>
 </template>
 <script>
-  import Trans from '@/plugins/Translation'
+import { Trans } from '@/plugins/Translation'
 
-  export default {
-    computed: {
-      supportedLanguages () {
-        return Trans.supportedLanguages
-      },
-      currentLanguage () {
-        return Trans.currentLanguage
-      }
+export default {
+  computed: {
+    supportedLanguages () {
+      return Trans.supportedLanguages
     },
-    methods: {
-      changeLanguage (e) {
-        const lang = e.target.value
-        const to = this.$router.resolve({ params: { lang } })
-        return Trans.changeLanguage(lang).then(() => {
-          this.$router.push(to.location)
-        })
-      },
-      isCurrentLanguage (lang) {
-        return lang === this.currentLanguage
-      }
+    currentLanguage () {
+      return Trans.currentLanguage
+    }
+  },
+  methods: {
+    changeLanguage (e) {
+      const lang = e.target.value
+      const to = this.$router.resolve({ params: { lang } })
+      return Trans.changeLanguage(lang).then(() => {
+        this.$router.push(to.location)
+      })
+    },
+    isCurrentLanguage (lang) {
+      return lang === this.currentLanguage
     }
   }
+}
 </script>

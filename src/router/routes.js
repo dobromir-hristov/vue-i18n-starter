@@ -1,4 +1,4 @@
-import Trans from '@/plugins/Translation'
+import {Trans} from '@/plugins/Translation'
 
 function load (component) {
   // '@' is aliased to src/components

@@ -2,7 +2,7 @@ import TheLanguageSwitcher from '@/components/TheLanguageSwitcher.vue'
 import { i18n } from '@/plugins/i18n'
 import { mount } from 'vue-test-utils'
 import { SUPPORTED_LANGUAGES } from '@/constants/trans'
-import Trans from '@/plugins/Translation'
+import {Trans} from '@/plugins/Translation'
 
 describe('TheLanguageSwitcher.vue', () => {
   let wrapper

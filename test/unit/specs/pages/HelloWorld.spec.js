@@ -1,7 +1,7 @@
 import HelloWorld from '@/pages/HelloWorld'
 import { i18n } from '@/plugins/i18n'
 import { mount } from 'vue-test-utils'
-import Trans from '@/plugins/Translation'
+import {Trans} from '@/plugins/Translation'
 
 describe('HelloWorld.vue', () => {
   const vm = mount(HelloWorld, { i18n })

@@ -52,14 +52,17 @@ const Trans = {
   changeLanguage (lang) {
     if (!Trans.isLangSupported(lang)) return Promise.reject(new Error('Language not supported'))
     if (i18n.locale === lang) return Promise.resolve(lang) // has been loaded prior
-    return import(/* webpackChunkName: "lang-[request]" */ `@/lang/${lang}.js`).then(msgs => {
+    return Trans.loadLanguageFile(lang).then(msgs => {
       i18n.setLocaleMessage(lang, msgs.default || msgs)
       return Trans.setI18nLanguageInServices(lang)
     })
+  },
+  loadLanguageFile (lang) {
+    return import(/* webpackChunkName: "lang-[request]" */ `@/lang/${lang}.json`)
   },
   isLangSupported (lang) {
     return Trans.supportedLanguages.includes(lang)
   }
 }
 
-export default Trans
+export { Trans }

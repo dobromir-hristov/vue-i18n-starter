@@ -1,4 +1,4 @@
-import {Trans} from '@/plugins/Translation'
+import { Trans } from '@/plugins/Translation'
 
 function load (component) {
   // '@' is aliased to src/components
@@ -11,12 +11,7 @@ export default [
     component: {
       template: '<router-view></router-view>'
     },
-    beforeEnter (to, from, next) {
-      // Load async message files here
-      const lang = to.params.lang
-      if (!Trans.isLangSupported(lang)) return next(Trans.getUserSupportedLang())
-      Trans.changeLanguage(lang).then(() => next())
-    },
+    beforeEnter: Trans.routeMiddleware,
     children: [
       {
         path: '',

@@ -23,5 +23,7 @@ npm run unit
 # run all tests
 npm test
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+The default language, supported languages and fallback language can be setup inside `constants/trans.js`.
+ 
+Inside the `router/index.js` the beforeEnter guard calls the `Trans.routeMiddleware`. That will redirect the user to a valid language route if the current one is not supported.
+ 

@@ -15,6 +15,10 @@ const Trans = {
   set currentLanguage (lang) {
     i18n.locale = lang
   },
+  /**
+   * Gets the first supported language that matches the user's
+   * @return {String}
+   */
   getUserSupportedLang () {
     const userPreferredLang = Trans.getUserLang()
 
@@ -38,6 +42,11 @@ const Trans = {
       langNoISO: lang.split('-')[0]
     }
   },
+  /**
+   * Sets the language to various services (axios, the html tag etc)
+   * @param {String} lang
+   * @return {String} lang
+   */
   setI18nLanguageInServices (lang) {
     Trans.currentLanguage = lang
     axios.defaults.headers.common['Accept-Language'] = lang
@@ -57,11 +66,34 @@ const Trans = {
       return Trans.setI18nLanguageInServices(lang)
     })
   },
+  /**
+   * Async loads a translation file
+   * @param lang
+   * @return {Promise<*>|*}
+   */
   loadLanguageFile (lang) {
     return import(/* webpackChunkName: "lang-[request]" */ `@/lang/${lang}.json`)
   },
+  /**
+   * Checks if a lang is supported
+   * @param {String} lang
+   * @return {boolean}
+   */
   isLangSupported (lang) {
     return Trans.supportedLanguages.includes(lang)
+  },
+  /**
+   * Checks if the route's param is supported, if not, redirects to the first supported one.
+   * @param {Route} to
+   * @param {Route} from
+   * @param {Function} next
+   * @return {*}
+   */
+  routeMiddleware (to, from, next) {
+    // Load async message files here
+    const lang = to.params.lang
+    if (!Trans.isLangSupported(lang)) return next(Trans.getUserSupportedLang())
+    return Trans.changeLanguage(lang).then(() => next())
   }
 }
 

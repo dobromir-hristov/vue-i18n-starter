@@ -11,10 +11,12 @@
     "test": "npm run unit",
     "test:watch": "jest --config test/unit/jest.conf.js --watch",
     "lint": "eslint --ext .js,.vue src test/unit/specs",
-    "build": "node build/build.js"
+    "build": "node build/build.js",
+    "lokalise:down": "lokalise --token=YOUR_TOKEN --project=PROJECT_ID --output=src/lang/"
   },
   "dependencies": {
     "axios": "^0.17.1",
+    "lokalise": "0.0.5",
     "vue": "^2.5.2",
     "vue-i18n": "^7.3.2",
     "vue-router": "^3.0.1",

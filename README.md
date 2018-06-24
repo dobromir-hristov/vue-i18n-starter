@@ -22,8 +22,13 @@ npm run unit
 
 # run all tests
 npm test
+
+# sync down lokalise translation strings. You need to create acc and generate token. Not available for free plan.
+npm run lokalise:down
 ```
-The default language, supported languages and fallback language can be setup inside `constants/trans.js`.
- 
+
+### Settings
+Default language, supported languages and fallback language can be setup inside [constants/trans.js](./src/constants/trans.js)`.
+
 Inside the `router/index.js` the beforeEnter guard calls the `Trans.routeMiddleware`. That will redirect the user to a valid language route if the current one is not supported.
  

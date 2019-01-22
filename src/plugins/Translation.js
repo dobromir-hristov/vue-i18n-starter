@@ -94,6 +94,18 @@ const Trans = {
     const lang = to.params.lang
     if (!Trans.isLangSupported(lang)) return next(Trans.getUserSupportedLang())
     return Trans.changeLanguage(lang).then(() => next())
+  },
+  /**
+   * Returns a new route object that has the current language already defined
+   * To be used on pages and components, outside of the main \ route, like on Headers and Footers.
+   * @example <router-link :to="$i18nRoute({ name: 'someRoute'})">Click Me </router-link>
+   * @param {Object} to - route object to construct
+   */
+  i18nRoute (to) {
+    return {
+      ...to,
+      params: { lang: this.currentLanguage, ...to.params }
+    }
   }
 }
 

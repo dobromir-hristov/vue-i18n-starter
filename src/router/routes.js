@@ -19,6 +19,11 @@ export default [
         component: load('HelloWorld')
       },
       {
+        path: 'about',
+        name: 'about',
+        component: load('About')
+      },
+      {
         path: '*',
         component: load('404')
       }

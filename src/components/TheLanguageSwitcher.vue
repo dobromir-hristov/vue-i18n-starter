@@ -1,12 +1,16 @@
 <template>
-  <select class="LanguageSwitcher"
-          name="language"
-          @change="changeLanguage">
-    <option v-for="lang in supportedLanguages"
-            :key="lang"
-            :selected="isCurrentLanguage(lang)"
-            :class="{ 'is-selected': isCurrentLanguage(lang) }"
-            :value="lang">
+  <select
+    class="LanguageSwitcher"
+    name="language"
+    @change="changeLanguage"
+  >
+    <option
+      v-for="lang in supportedLanguages"
+      :key="lang"
+      :selected="isCurrentLanguage(lang)"
+      :class="{ 'is-selected': isCurrentLanguage(lang) }"
+      :value="lang"
+    >
       {{lang}}
     </option>
   </select>
@@ -37,3 +41,9 @@ export default {
   }
 }
 </script>
+
+<style>
+.LanguageSwitcher {
+  margin-bottom: 1rem;
+}
+</style>

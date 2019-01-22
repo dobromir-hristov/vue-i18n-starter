@@ -1,5 +1,8 @@
 {
   "welcome_message": "Добре дошли във Вашият Vue.js App",
   "popular_links": "Популярни линкове",
-  "ecosystem": "Екосистема"
+  "ecosystem": "Екосистема",
+  "pages": {
+    "about": "Страница за нас"
+  }
 }
